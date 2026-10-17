@@ -44,6 +44,10 @@ jobs:
           unzip -q LuckyWheelNative_AndroidStudio_Project.zip -d extracted
           test -f extracted/LuckyWheelNative/settings.gradle.kts
 
+      - name: Fix Kotlin error
+        run: |
+          sed -i 's/fillViewport = true/isFillViewport = true/' extracted/LuckyWheelNative/app/src/main/java/com/example/luckywheel/MainActivity.kt
+
       - name: Build debug APK
         run: gradle --no-daemon -p extracted/LuckyWheelNative assembleDebug
 
